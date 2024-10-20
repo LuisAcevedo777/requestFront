@@ -13,7 +13,7 @@ const Register = () => {
     const[registerUser, setRegisterUser]=useState('') 
 
     const submit=(data)=>{
-axios.post("http://localhost:8000/api/auth/register/",data, {
+axios.post("https://requestserver-1.onrender.com/api/auth/register/",data, {
   headers:{ "token": token}
 
   

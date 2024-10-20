@@ -23,7 +23,7 @@ const token = localStorage.getItem('token')
 export const getEmployeeThunk = () =>(dispatch) => {
     dispatch(setIsLoading(true))
     
-         axios.get('http://localhost:8000/api/employee/', {
+         axios.get('https://requestserver-1.onrender.com/api/employee/', {
             headers:{ "token": token}
           
            })
@@ -35,7 +35,7 @@ export const getEmployeeThunk = () =>(dispatch) => {
 export const filterEmployeeTitleThunk = (title) => (dispatch) => {
     dispatch(setIsLoading(false))
     
-        axios.get('http://localhost:8000/api/employee/', {
+        axios.get('https://requestserver-1.onrender.com/api/employee/', {
             headers:{ "token": token}
           
            })
@@ -50,7 +50,7 @@ export const filterEmployeeTitleThunk = (title) => (dispatch) => {
 export const deleteThunk = (id) => (dispatch) => {
     dispatch(setIsLoading(false))
     
-        axios.delete(`http://localhost:8000/api/employee/${id}`, {
+        axios.delete(`https://requestserver-1.onrender.com/api/employee/${id}`, {
             headers:{ "token": token}
           
            })

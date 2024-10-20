@@ -33,7 +33,7 @@ const Home = () => {
              
                  const submit=(data)=>{
                 const newData = { ...data, employeeId };   
-             axios.post("http://localhost:8000/api/request/",newData,   {
+             axios.post("https://requestserver-1.onrender.com/api/request/",newData,   {
                 headers:{ "token": token}
             
                 

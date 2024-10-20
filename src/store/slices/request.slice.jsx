@@ -22,7 +22,7 @@ const token = localStorage.getItem('token')
 export const getRequestThunk = () => dispatch => {
     dispatch(setIsLoading(true))
     
-        axios.get('http://localhost:8000/api/request', {
+        axios.get('https://requestserver-1.onrender.com/api/request', {
             headers:{ "token": token}
           
            })
@@ -43,7 +43,7 @@ export const filterRequestThunk = (id) => (dispatch) => {
 
 export const filterRequestTitleThunk = (title) => (dispatch) => {
     dispatch(setIsLoading(true));
-         axios.get('http://localhost:8000/api/request', {
+         axios.get('https://requestserver-1.onrender.com/api/request', {
             headers:{ "token": token}
           
            })
