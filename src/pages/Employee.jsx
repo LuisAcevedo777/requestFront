@@ -13,44 +13,61 @@ import Modal from "react-bootstrap/Modal";
 
 const Employee = () => {
 
-  const token = localStorage.getItem('token')
+  //Llamado al token en el localStorage
+
+  const token = JSON.parse(localStorage.getItem("token"));
+  
   const dispatch = useDispatch();
 
   const [newsSearch, setNewsSearch] = useState("");
   const employees = useSelector((state) => state.employee);
   const [user, setUser] = useState({});
   const { register, reset, handleSubmit } = useForm();
-  const[update, setUpdate]=useState('')
-  //modal
+  const [update, setUpdate] = useState("");
   const [show, setShow] = useState(false);
 
-  const handleClose = () =>{reset(), setShow(false)};
+  //Función que permite cerrar el formulario para actualizar empleados, resetea los campos de este.
+  const handleClose = () => {
+    reset(), setShow(false);
+  };
+
+
+  //Función para mostrar el formulario para actualizar el empleado
+  //Resetea los campos con el usuario seleccionado
+
   const handleShow = (currentEmployee) => {
     reset({
-        "employeeId": currentEmployee.employeeId,
-        "name": currentEmployee.name,
-        "email": currentEmployee.email,
-        "roleId": currentEmployee.roleId,
-        "salary": currentEmployee.salary
-     
-    }), setShow(true)};
+      employeeId: currentEmployee.employeeId,
+      name: currentEmployee.name,
+      email: currentEmployee.email,
+      roleId: currentEmployee.roleId,
+      salary: currentEmployee.salary,
+    }),
+      setShow(true);
+  };
 
+  //Carga el array de empleados con los que están en la base de datos
   useEffect(() => {
     dispatch(getEmployeeThunk());
   }, []);
 
+ //Petición para actualizar información de un empleado, desde el formulario flotante
 
-  const submit = async(data)=>{ 
-   await axios.put(`https://requestserver-1.onrender.com/api/employee/${data.employeeId}`,data, {
-    headers:{ "token": token}
-
-   })
-   .then((res)=>{
-    setUpdate('Empleado Actualizado')
-    setTimeout(()=>{setUpdate('')},2000)
-  })
-   .catch((error)=>{setUpdate("no se actualizó")})
-  }
+  const submit = async (data) => {
+    await axios
+      .put(`https://requestserver-1.onrender.com/api/employee/${data.employeeId}`, data, {
+        headers: { token: token },
+      })
+          .then((res) => {
+        setUpdate("Empleado Actualizado");
+        setTimeout(() => {
+          setUpdate("");
+        }, 2000);
+      })
+      .catch((error) => {
+        console.log(error), setUpdate(error.response.data);
+      });
+  };
 
   return (
     <div className="employeesContainer">
@@ -67,14 +84,17 @@ const Employee = () => {
             className="bg-danger text-black"
             variant="outline-secondary"
             id="button-addon2"
+             
+            //filtro para traer los empleados de acuerdo al texto buscado
+
             onClick={() => dispatch(filterEmployeeTitleThunk(newsSearch))}
           >
             <i className="fa-solid fa-magnifying-glass"></i>
           </Button>
         </InputGroup>
-
-        <h1 className="text-light">EMPLOYEES</h1>
-
+ 
+        <h1 className="text-light">EMPLOYEES</h1>  
+                              
         {employees?.map((employee) => (
           <Col
             className="productsInEmploy"
@@ -108,6 +128,8 @@ const Employee = () => {
                 <div className="crudEmployee">
                   <i
                     onClick={() => {
+                      //elimina empleado con un click en esta caneca
+
                       dispatch(deleteThunk(employee?.employeeId)),
                         dispatch(getEmployeeThunk());
                     }}
@@ -123,65 +145,63 @@ const Employee = () => {
         ))}
       </Row>
 
+{/*modal*/}
       <Modal show={show} onHide={handleClose} animation={false}>
         <Modal.Header closeButton></Modal.Header>
         <Modal.Body>
           <Form className="cardHome" onSubmit={handleSubmit(submit)}>
-
-          <Form.Control type="text" style={{display: "none"}}  name="employeeId" {...register('employeeId')} />
+            <Form.Control
+              type="text"
+              style={{ display: "none" }}
+              name="employeeId"
+              {...register("employeeId")}
+            />
 
             <Form.Label className="text-white">Name: </Form.Label>
             <Form.Control
-              {...register('name')}
+              {...register("name")}
               type="text"
               name="name"
               className="cardEmployTitle"
               defaultValue={user.name}
-                          />
+            />
             <Form.Label className="text-white">Email: </Form.Label>
             <Form.Control
-             {...register('email')}
+              {...register("email")}
               type="text"
               name="email"
               className="cardEmployTitle"
               defaultValue={user.email}
-             
             />
             <Form.Label className="text-white">Salary: </Form.Label>
             <Form.Control
-             {...register('salary')}
+              {...register("salary")}
               type="number"
               name="salary"
               className="cardEmployTitle"
               defaultValue={user.salary}
-             
             />
-             <Form.Label className="text-white">RoleId: </Form.Label>
+            <Form.Label className="text-white">RoleId: </Form.Label>
             <Form.Control
-             {...register('roleId')}
+              {...register("roleId")}
               type="number"
               name="roleId"
               className="cardEmployTitle"
               defaultValue={user.roleId}
-             
             />
             <div className="crudEmployee">
-              <i
-            
-                className="fa-solid fa-trash-can text-light fa-2x"
-              ></i>
+              <i className="fa-solid fa-trash-can text-light fa-2x"></i>
               <h2 className="requestMessage">{update}</h2>
             </div>
             <Button variant="primary" type="submit">
-            Save Changes
-          </Button>
+              Save Changes
+            </Button>
           </Form>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          
         </Modal.Footer>
       </Modal>
     </div>

@@ -1,14 +1,16 @@
-import { Navigate, Outlet } from 'react-router-dom';
+import { Navigate, Outlet } from "react-router-dom";
 
 const ProtectedRoutes = () => {
+  const token = JSON.parse(localStorage.getItem("token"));
+  const role = JSON.parse(localStorage.getItem("role"));
 
-	const token = localStorage.getItem('token')	
+  //verifica si el usuario que intenta acceder a las rutas protegidas sea administrador
 
-    if(token){
-        return <Outlet/>
-    } else { 
-        return <Navigate to='/Login' />
-    }                     
-};                        
+  if (token && role === "admin") {
+    return <Outlet />;
+  } else {
+    return <Navigate to="/" />;
+  }
+};
 
 export default ProtectedRoutes;

@@ -1,65 +1,86 @@
-import axios from 'axios';
-import React from 'react';
-import {Form, Button} from "react-bootstrap"
-import { useForm } from 'react-hook-form';
-import { useNavigate, Link } from 'react-router-dom';
+import axios from "axios";
+import React, { useState } from "react";
+import { Form, Button } from "react-bootstrap";
+import { useForm } from "react-hook-form";
+import { useNavigate, Link } from "react-router-dom";
 
 const Login = () => {
-    const token = localStorage.getItem('token')
-    const{register, handleSubmit}=useForm()
-    const navigate= useNavigate()
 
-    const submit=(data)=>{
-axios.post("https://requestserver-1.onrender.com/api/auth/login/",data,   {
-  headers:{ "token": token}
+  //Se llama al token del localStorage
 
-  
- })
-.then(res=> { 
+  const token = JSON.parse(localStorage.getItem("token"));
+  const { register, handleSubmit } = useForm();
 
-       localStorage.setItem('token', res.data.token)
-       localStorage.setItem('employeeId',res.data.employeeId)
-       navigate('/')
-    })
-.catch(error=>{ 
+  const navigate = useNavigate();
+  const [response, setResponse] = useState("");
 
-if(error.response.status=== 401){
+  //Función con la información del formulario del login, envía para autenticación
 
-    alert('Password error!')
-}else{
-    console.log('No se puedo ingresar a la cuenta')
-    console.log(error)
+  const submit = (data) => {
+    axios
+      .post("https://requestserver-1.onrender.com/api/auth/login/", data, {
+        headers: { token: token },
+      })
+      .then((res) => {
+        localStorage.setItem("token", JSON.stringify(res.data.token));
+        localStorage.setItem("employeeId", JSON.stringify(res.data.employeeId));
+        localStorage.setItem("role", JSON.stringify(res.data.role));
+        navigate("/");
+      })
+      .catch((error) => {
+        if (error.response.status === 401) {
+          setResponse(error.response.data.message);
+          setTimeout(() => {
+            setResponse("");
+          }, 2000);
+        } else {
+          setResponse(error.response.data.message);
+          setTimeout(() => {
+            setResponse("");
+          }, 2000);
+          console.log(error);
+        }
+      });
+  };
 
-}})
-    }
+  return (
+    <div className="divLogin">
 
-    return (
-        <div className='divLogin'>
-        <Form  className='login' onSubmit={handleSubmit(submit)}>
-            
-      <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Email address</Form.Label>
-        <Form.Control {...register('email')} type="email" placeholder="Enter email" defaultValue='juan@gmail.com'/>
-      
-      </Form.Group>
+        {/*Formulario Login*/}
 
-      <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>Password</Form.Label>
-        <Form.Control {...register('password')} type="password" placeholder="Password" defaultValue='123'/>
-      </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicCheckbox">
-    
-      </Form.Group>
-      <div className="btn-login">
-      <Button variant="primary" type="submit"  className="btn-form">
-        Submit
-        
-      </Button>
-      </div>
-      <Link to="/register" className='textFormLogin'>Aún no estás registrado?</Link>
-    </Form>
+      <Form className="login" onSubmit={handleSubmit(submit)}>
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Label>Email address</Form.Label>
+          <Form.Control
+            {...register("email")}
+            type="email"
+            placeholder="Enter email"
+            defaultValue="juanadmin@gmail.com"
+          />
+        </Form.Group>
+
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Label>Password</Form.Label>
+          <Form.Control
+            {...register("password")}
+            type="password"
+            placeholder="Password"
+            defaultValue="123"
+          />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="formBasicCheckbox"></Form.Group>
+        <h2 className="requestMessage">{response}</h2>
+        <div className="btn-login">
+          <Button variant="primary" type="submit" className="btn-form">
+            Submit
+          </Button>
         </div>
-    );
+        <Link to="/register" className="textFormLogin">
+          Aún no estás registrado?
+        </Link>
+      </Form>
+    </div>
+  );
 };
 
 export default Login;

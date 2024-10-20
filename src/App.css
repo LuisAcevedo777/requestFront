@@ -4,7 +4,8 @@
     box-sizing: border-box;
 
 }
-.div-principal{
+
+.div-principal {
     background-color: rgb(26, 5, 83);
     width: 100vw;
     height: auto;
@@ -14,23 +15,23 @@
     align-items: center;
 }
 
-.principalRow{
-    display:flex;
+.principalRow {
+    display: flex;
     width: 100%;
-    flex-direction:row;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
     height: auto;
     padding-top: 10%;
-   
+
 
 
 }
 
-.my-4{
-    display:flex;
+.my-4 {
+    display: flex;
     width: 100%;
-    flex-direction:row;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
     height: auto;
@@ -40,19 +41,19 @@
 }
 
 
-.my-5{
-    
-    display:flex;
+.my-5 {
+
+    display: flex;
     width: 100%;
-    flex-direction:row;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
     height: auto;
 }
 
 
-.login{
-    
+.login {
+
     height: 70vh;
     border-style: solid;
     width: 30vw;
@@ -60,52 +61,53 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    background-color:rgb(56, 52, 59);
-    color:white;
+    background-color: rgb(56, 52, 59);
+    color: white;
     border-radius: 25px;
     margin: 10%;
 }
-.btn-login{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+
+.btn-login {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
 }
 
-.btn-register{
+.btn-register {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-     }
-
-     .textFormLogin{
-        text-decoration: none;
-      
-    }
-    
-    .textFormLogin:hover{
-        text-decoration:dotted;
-        color: greenyellow;
-        font-size: 1rem;
-      
-    }
-
-.textFormRegister{
-    text-decoration: none;
-  
 }
 
-.textFormRegister:hover{
-    text-decoration:dotted;
+.textFormLogin {
+    text-decoration: none;
+    color: white;
+}
+
+.textFormLogin:hover {
+    text-decoration: dotted;
     color: greenyellow;
     font-size: 1rem;
-  
+
 }
 
-.register{
-    
+.textFormRegister {
+    text-decoration: none;
+    color: white;
+}
+
+.textFormRegister:hover {
+    text-decoration: dotted;
+    color: greenyellow;
+    font-size: 1rem;
+
+}
+
+.register {
+
     height: 50vh;
     border-style: solid;
     width: 100vw;
@@ -113,38 +115,38 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    background-color:rgb(56, 52, 59);
-    color:rgb(255, 255, 255);
+    background-color: rgb(56, 52, 59);
+    color: rgb(255, 255, 255);
     padding-top: 2rem;
     margin: 10%;
 }
 
-.registroExitoso{
- 
-    color:azure;
+.registroExitoso {
+
+    color: azure;
     font-size: 2rem;
 
 }
 
 
-.divLogin{
-    
+.divLogin {
+
     width: 100%;
-display: flex;
-flex-direction: row;
-justify-content: center;
-align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 
 }
 
-.productsInHome{
+.productsInHome {
 
-height: 10%;
-width: 100%;
+    height: 10%;
+    width: 100%;
 }
 
-.request{
-    
+.request {
+
     height: 70vh;
     border-style: solid;
     width: 100vw;
@@ -152,21 +154,21 @@ width: 100%;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    background-color:rgb(56, 52, 59);
-    color:white;
+    background-color: rgb(56, 52, 59);
+    color: white;
     padding-top: 2rem;
     margin: 10%;
 }
 
-.requestMessage{
+.requestMessage {
     position: fixed;
     background-color: #f85555;
     z-index: 18;
 }
 
 
-.card{
-   
+.card {
+
     height: 40rem;
     display: flex;
     flex-direction: column;
@@ -174,7 +176,7 @@ width: 100%;
     position: relative;
 }
 
-.card-title{
+.card-title {
 
     border-style: ridge;
     background-color: rgb(240, 240, 203);
@@ -183,17 +185,17 @@ width: 100%;
 }
 
 
-.pnav{
- 
+.pnav {
+
     width: 100vw;
     height: 4rem;
     display: flex;
     flex-direction: row;
-   position: static;
+    position: static;
 }
 
-.fa-solid{
-    
+.fa-solid {
+
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -201,15 +203,16 @@ width: 100%;
     align-items: center;
 }
 
-.nav{
+.nav {
     height: 4rem;
     display: flex;
     flex-direction: row;
-       align-items: center;
+    align-items: center;
 
 }
-.nav1{
-    font-family: Yantramanav,sans-serif;
+
+.nav1 {
+    font-family: Yantramanav, sans-serif;
     height: 100%;
     font-size: 25px;
     font-size: 1.5rem;
@@ -234,7 +237,7 @@ width: 100%;
 
 
 div.col1 {
-   
+
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -243,96 +246,102 @@ div.col1 {
 
 
 .cardHome {
-     background-color: rgb(56, 52, 59);
-     display: flex;
-     flex-direction: column;
-     align-items: center;
-     justify-content: space-between;
+    background-color: rgb(56, 52, 59);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
     height: 20rem;
-     width: 100%;
+    width: 100%;
 }
 
 
-.ecomerce{
+.ecomerce {
 
     font-size: 20px;
 }
-.l1{
+
+.l1 {
     height: 10vh;
-   width: 9vw;
-  border-color: rgb(56, 52, 59);
+    width: 9vw;
+    border-color: rgb(56, 52, 59);
     border-style: solid;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    
+
 }
 
-.l1-logout{
+.l1-logout {
     height: 100%;
     margin-top: 0.5rem;
-  border-color:rgb(56, 52, 59);
+    border-color: rgb(56, 52, 59);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.me-auto{
+.me-auto {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    }
-
-.sp1{
-
-    color: #c7c7c7;;
 }
-.cartButton{
-      border-radius: 50%;
-    background-color: #f85555;;
+
+.sp1 {
+
+    color: #c7c7c7;
+    ;
+}
+
+.cartButton {
+    border-radius: 50%;
+    background-color: #f85555;
+    ;
     width: 20%;
     height: 10%;
-   position: absolute;
-   bottom: 0;
+    position: absolute;
+    bottom: 0;
 }
 
-.blockquote-footer{
+.blockquote-footer {
     left: 0;
     bottom: 0;
-    position:relative;
+    position: relative;
     width: 100vw;
     height: 30vh;
-    background-color:rgb(56, 52, 59);
+    background-color: rgb(56, 52, 59);
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    
+
 }
-.footerP{
+
+.footerP {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.sourceTitle{
- font-size: 1.2rem;
-    font-family: Yantramanav,sans-serif;
+.sourceTitle {
+    font-size: 1.2rem;
+    font-family: Yantramanav, sans-serif;
     color: white;
 }
 
-.footer2{
-   
+.footer2 {
+
     font-size: 2rem;
     color: white;
     display: flex;
     flex-direction: row;
     gap: 2rem;
 }
-.btnInput{
+
+.btnInput {
 
     color: #f85555;
 }
@@ -340,12 +349,12 @@ div.col1 {
 /*detail*/
 
 .listSuggered {
-  
+
     list-style: none;
-   display: flex;
-   flex-direction: column;
-   justify-content: center;
-   align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .ulistSuggered {
@@ -354,18 +363,18 @@ div.col1 {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-      
+
 
 }
 
 .imgSuggered {
-   
+
     object-fit: cover;
     width: 90%;
 }
 
 .titleSuggered {
-   color: rgb(56, 52, 59);
+    color: rgb(56, 52, 59);
     font-size: 18px;
     display: flex;
     flex-direction: row;
@@ -373,100 +382,103 @@ div.col1 {
     align-items: center;
 }
 
-.imgUnique{ 
+.imgUnique {
     width: 70%;
     height: 30rem;
 }
 
 
-.containerPrincipal{
+.containerPrincipal {
 
 
-width: 100%;
-height: 50rem;
-margin-top: 10%;
-display: flex;
-flex-direction: row;
-align-items: center;
-justify-content: space-between;
-margin-bottom: 25rem;
+    width: 100%;
+    height: 50rem;
+    margin-top: 10%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 25rem;
 }
-.divProductDetail{
 
-   
+.divProductDetail {
+
+
     height: auto;
     width: 100vw;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-  
-   
+
+
 }
 
-.carouselDetail{
+.carouselDetail {
 
-  
+
     width: 100%;
     height: 50%;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    
+
 }
 
-.carouselItem{
-  
+.carouselItem {
+
     width: 100%;
     height: 50%;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    
+
 }
 
-.count{
-    color:'black';
+.count {
+    color: 'black';
     text-align: center;
 }
 
-.linkHome{
-     text-decoration: none;
+.linkHome {
+    text-decoration: none;
     color: #f85555;
     font-size: 2rem;
 }
 
-.cartButton1{
+.cartButton1 {
     border-radius: 50%;
-  background-color: #f85555;;
-  width: 2rem;
-  height: 2rem;
- margin-left: 8rem;
+    background-color: #f85555;
+    ;
+    width: 2rem;
+    height: 2rem;
+    margin-left: 8rem;
 }
 
 /*Description*/
 
-.descritptionTot{
-background-color: blue;
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-}
-
-.pricValue{
-  
+.descritptionTot {
+    background-color: blue;
     display: flex;
     flex-direction: column;
-    justify-content:start;
+    justify-content: center;
+    align-items: center;
+}
+
+.pricValue {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
     align-items: center;
     width: 100%;
     height: 40%;
 }
-.pricpric{
-    
+
+.pricpric {
+
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -474,17 +486,19 @@ align-items: center;
     align-items: center;
     font-size: 15px;
 }
-.priceD{
 
-width: 40%;
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
+.priceD {
+
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     color: rgb(56, 52, 59);
     font-size: 20px;
 }
-.buttonDesc{
+
+.buttonDesc {
 
     display: flex;
     flex-direction: row;
@@ -493,9 +507,9 @@ align-items: center;
 
 
 
-.addToCart{
-margin-top: 2rem;
-background-color: #f85555;
+.addToCart {
+    margin-top: 2rem;
+    background-color: #f85555;
     width: 35vw;
     color: #fff;
     font-size: 1.1rem;
@@ -506,7 +520,7 @@ background-color: #f85555;
 
 /*employees*/
 
-.employeesContainer{
+.employeesContainer {
     background-color: rgb(26, 5, 83);
     padding-top: 3rem;
     height: auto;
@@ -515,10 +529,10 @@ background-color: #f85555;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    
+
 }
 
-.crudEmployee{ 
+.crudEmployee {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
@@ -528,40 +542,41 @@ background-color: #f85555;
 
 
 
-.titemployees{
+.titemployees {
     font-size: 20px;
     width: 60%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-  
+
 }
 
-.linktotit1{
+.linktotit1 {
 
-     height: 5rem;
+    height: 5rem;
     display: flex;
     flex-direction: row;
-    justify-content:center;
+    justify-content: center;
     align-items: center;
     gap: 3rem;
     margin-bottom: 5rem;
 }
-.quantityBox{
+
+.quantityBox {
 
     width: 3rem;
     height: 3rem;
     border-style: solid;
-   margin-top: 1rem;
+    margin-top: 1rem;
 }
 
-.ulCardemployee{
-    background-color:rgb(56, 52, 59);
+.ulCardemployee {
+    background-color: rgb(56, 52, 59);
     padding: 0.5rem;
     height: 15rem;
     width: 100%;
-     list-style: none;
+    list-style: none;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -570,39 +585,39 @@ background-color: #f85555;
     object-fit: contain;
 }
 
-.liCardemployee{
-    background-color:rgb(56, 52, 59);
+.liCardemployee {
+    background-color: rgb(56, 52, 59);
     height: 100%;
     width: 100%;
-     list-style: none;
+    list-style: none;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
-  
+
 }
 
-.linkCardemployee{
+.linkCardemployee {
     width: 100%;
-    background-color:rgb(56, 52, 59);
-   display: flex;
-   display: flex;
-   flex-direction: row;
-   justify-content: space-evenly;
-   align-items: center;
-   text-decoration: none;
+    background-color: rgb(56, 52, 59);
+    display: flex;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    text-decoration: none;
 }
 
-.priceemployees{
-     font-size: 2rem;
-     color: rgb(251, 252, 175);
+.priceemployees {
+    font-size: 2rem;
+    color: rgb(251, 252, 175);
     display: flex;
     align-items: center;
 }
 
 
-.cardEmploy{
-    
+.cardEmploy {
+
     height: 40rem;
     display: flex;
     flex-direction: column;
@@ -610,7 +625,7 @@ background-color: #f85555;
     position: relative;
 }
 
-.cardEmployTitle{
+.cardEmployTitle {
 
     border-style: ridge;
     background-color: rgb(240, 240, 203);
@@ -619,8 +634,8 @@ background-color: #f85555;
 }
 
 
-.productsInEmploy{
-  
+.productsInEmploy {
+
     height: auto;
     width: 100%;
-    }
+}
