@@ -79,12 +79,12 @@ const Home = () => {
         dispatch(get)
       })
       .catch((error) => {
-        if (error.response.status === 401) {
+        console.log("Error: ", error)
+        if (error.response && error.response.status === 401) {
           alert("Datos incorrectos!");
         } else {
-          console.log(error.response.data);
-          console.log(error.message);
-          setResponse(error.response.data.message);
+          console.log(error.response ? error.response.data  :  error.message);
+          setResponse(error.response ? error.response.data.message : error.message);
           setTimeout(() => {
             setResponse("");
           }, 2000);
