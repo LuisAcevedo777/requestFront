@@ -20,9 +20,7 @@ const Register = () => {
 
   const submit = (data) => {
     axios
-      .post("https://requestserver-y82y.onrender.com/api/auth/register/", data, {
-        headers: { token: token },
-      })
+      .post("https://requestserver-y82y.onrender.com/api/auth/register/", data)
       .then((res) => {
         setRegisterUser("Registro Exitoso!");
         setTimeout(() => {

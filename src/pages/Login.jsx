@@ -8,7 +8,7 @@ const Login = () => {
 
   //Se llama al token del localStorage
 
-  const token = JSON.parse(localStorage.getItem("token"));
+  
   const { register, handleSubmit } = useForm();
 
   const navigate = useNavigate();
@@ -18,9 +18,7 @@ const Login = () => {
 
   const submit = (data) => {
     axios
-      .post("https://requestserver-y82y.onrender.com/api/auth/login/", data, {
-        headers: { token: token },
-      })
+      .post("https://requestserver-y82y.onrender.com/api/auth/login/", data)
       .then((res) => {
         localStorage.setItem("token", JSON.stringify(res.data.token));
         localStorage.setItem("employeeId", JSON.stringify(res.data.employeeId));

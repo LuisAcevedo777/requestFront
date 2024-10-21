@@ -76,7 +76,7 @@ const Home = () => {
         setTimeout(() => {
           setResponse("");
         }, 2000);
-        dispatch(get)
+        
       })
       .catch((error) => {
         console.log("Error: ", error)
