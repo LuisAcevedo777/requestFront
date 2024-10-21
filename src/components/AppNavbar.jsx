@@ -32,15 +32,16 @@ const AppNavbar = () => {
       <Navbar className="pnav  fixed-top bg-dark" expand="md">
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav" className="bg-dark">
+        <Nav className="me-auto bg-dark">
         <Nav.Link
               as={Link}
               to="/"
-              title="login"
+              title="home"
               className="l1 bg-dark"
             >
               <i className="fa-solid fa-home fa-3x text-light"></i>
             </Nav.Link>
-          <Nav className="me-auto bg-dark">
+        
             <Nav.Link
               as={Link}
               to="/Login"

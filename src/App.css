@@ -523,7 +523,7 @@ div.col1 {
 .employeesContainer {
     background-color: rgb(26, 5, 83);
     padding-top: 3rem;
-    height: auto;
+    height:auto;
     width: 90%;
     display: flex;
     flex-direction: column;

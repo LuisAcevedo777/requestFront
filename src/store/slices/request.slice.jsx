@@ -4,7 +4,6 @@ import axios from "axios";
 
 //Llamado al token del localStorage
 
-const token = JSON.parse(localStorage.getItem("token"));
 
 //Slice de las solicitudes
 
@@ -24,21 +23,23 @@ export const requestSlice = createSlice({
 
 //Thunk para traer las solicitudes de la base de datos y agregarlas al array de solicitudes
 
-export const getRequestThunk = () => async (dispatch) => {
-  dispatch(setIsLoading(true));
 
-  try {
+export const getRequestThunk = () => async (dispatch) => {
+  const token = JSON.parse(localStorage.getItem("token"));
+    try {
+      dispatch(setIsLoading(true));
     const res = await axios.get("https://requestserver-y82y.onrender.com/api/request", {
-      headers: { token: token }, 
+      headers: { "token": token },
     });
     dispatch(setRequest(res.data));
   } catch (error) {
-    throw(error)
-    
+    console.error("Error fetching requests:", error);
+    throw error
   } finally {
     dispatch(setIsLoading(false));
   }
 };
+
 
 
 
@@ -55,6 +56,7 @@ export const getClearThunk = () => async(dispatch) => {
 //Thunk para filtrar las solicitudes de acuerdo a las letras que coinciden del resumen, con las enviadas.
 
 export const filterRequestTitleThunk = (title,role,employeeId) => async(dispatch) => {
+  const token = JSON.parse(localStorage.getItem("token"));
   dispatch(setIsLoading(true));
  if(role==="admin"){
        await axios
@@ -90,6 +92,7 @@ export const filterRequestTitleThunk = (title,role,employeeId) => async(dispatch
 //Thunk para traer las solicitudes de UN empleado, se busca por ID del empleado
 
 export const requestEmployeeThunk = (id) => async(dispatch) => {
+  const token = JSON.parse(localStorage.getItem("token"));
     dispatch(setIsLoading(true));
     await axios
     .get(`https://requestserver-y82y.onrender.com/api/employee/${id}`, {

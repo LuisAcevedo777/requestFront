@@ -26,18 +26,14 @@ const Login = () => {
         navigate("/");
       })
       .catch((error) => {
-        if (error.response.status === 401) {
-          setResponse(error.response.data.message);
-          setTimeout(() => {
-            setResponse("");
-          }, 2000);
-        } else {
-          setResponse(error.response.data.message);
+        
+             
+          setResponse(error.message);
           setTimeout(() => {
             setResponse("");
           }, 2000);
           console.log(error);
-        }
+        
       });
   };
 

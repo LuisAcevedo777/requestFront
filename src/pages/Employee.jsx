@@ -10,19 +10,13 @@ import "../App.css";
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import Modal from "react-bootstrap/Modal";
-import {
- 
-  getRequestThunk,
-  requestEmployeeThunk,
-  getClearThunk
-} from "../store/slices/request.slice";
+
 
 const Employee = () => {
 
   //Llamado al token, role, y employeeId en el localStorage
-  const role = JSON.parse(localStorage.getItem('role')) 
+
   const token = JSON.parse(localStorage.getItem("token"));
-  const employeeId = JSON.parse(localStorage.getItem("employeeId"));
 
 
   const dispatch = useDispatch();
@@ -57,7 +51,7 @@ const Employee = () => {
   //Carga el array de empleados con los que están en la base de datos
   useEffect(() => {
     dispatch(getEmployeeThunk());
-  }, [employees]);
+  }, [employees,dispatch]);
 
  //Petición para actualizar información de un empleado, desde el formulario flotante
 
