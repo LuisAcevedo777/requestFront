@@ -52,15 +52,31 @@ const Home = () => {
   const submit = (data) => {
     const newData = { ...data, employeeId };
     axios
-      .post("https://requestserver-y82y.onrender.com/api/request/", newData, {
+      .post("http://localhost:8000/api/request/", newData, {
         headers: { token: token },
       })
       .then((res) => {
+
+        if(role === "admin"){ 
+          dispatch(getRequestThunk());
+         
+          
+        }
+          else if(role === "employee"){
+            dispatch(requestEmployeeThunk(employeeId))
+           
+          }else{
+            dispatch(getClearThunk())
+           setResponse("NO TIENES AUTORIZACIÓN")
+          
+          }
+
         console.log(res);
         setResponse("Solicitud Enviada!");
         setTimeout(() => {
           setResponse("");
         }, 2000);
+        dispatch(get)
       })
       .catch((error) => {
         if (error.response.status === 401) {

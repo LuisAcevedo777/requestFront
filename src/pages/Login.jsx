@@ -18,7 +18,7 @@ const Login = () => {
 
   const submit = (data) => {
     axios
-      .post("https://requestserver-y82y.onrender.com/api/auth/login/", data, {
+      .post("http://localhost:8000/api/auth/login/", data, {
         headers: { token: token },
       })
       .then((res) => {
