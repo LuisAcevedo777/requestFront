@@ -28,7 +28,7 @@ export const getEmployeeThunk = () => (dispatch) => {
   dispatch(setIsLoading(true));
 
   axios
-    .get("http://localhost:8000/api/employee/", {
+    .get("https://requestserver-y82y.onrender.com/api/employee/", {
       headers: { token: token },
     })
     .then((res) => {
@@ -43,7 +43,7 @@ export const filterEmployeeTitleThunk = (title) => (dispatch) => {
   dispatch(setIsLoading(false));
 
   axios
-    .get("http://localhost:8000/api/employee/", {
+    .get("https://requestserver-y82y.onrender.com/api/employee/", {
       headers: { token: token },
     })
     .then((res) => {
@@ -61,7 +61,7 @@ export const deleteThunk = (id) => (dispatch) => {
   dispatch(setIsLoading(false));
 
   axios
-    .delete(`http://localhost:8000/api/employee/${id}`, {
+    .delete(`https://requestserver-y82y.onrender.com/api/employee/${id}`, {
       headers: { token: token },
     })
     .then((res) => {

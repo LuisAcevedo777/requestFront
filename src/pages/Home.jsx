@@ -52,7 +52,7 @@ const Home = () => {
   const submit = (data) => {
     const newData = { ...data, employeeId };
     axios
-      .post("http://localhost:8000/api/request/", newData, {
+      .post("https://requestserver-y82y.onrender.com/api/request/", newData, {
         headers: { token: token },
       })
       .then((res) => {

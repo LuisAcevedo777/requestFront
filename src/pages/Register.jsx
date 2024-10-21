@@ -20,7 +20,7 @@ const Register = () => {
 
   const submit = (data) => {
     axios
-      .post("http://localhost:8000/api/auth/register/", data, {
+      .post("https://requestserver-y82y.onrender.com/api/auth/register/", data, {
         headers: { token: token },
       })
       .then((res) => {

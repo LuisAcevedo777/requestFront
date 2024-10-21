@@ -28,7 +28,7 @@ export const getRequestThunk = () => async(dispatch) => {
   dispatch(setIsLoading(true));
 
   await axios
-    .get("http://localhost:8000/api/request", {
+    .get("https://requestserver-y82y.onrender.com/api/request", {
       headers: { token: token },
     })
     .then((res) => {
@@ -53,7 +53,7 @@ export const filterRequestTitleThunk = (title,role,employeeId) => async(dispatch
   dispatch(setIsLoading(true));
  if(role==="admin"){
        await axios
-    .get("http://localhost:8000/api/request", {
+    .get("https://requestserver-y82y.onrender.com/api/request", {
       headers: { token: token },
     })
     .then((res) => {
@@ -65,7 +65,7 @@ export const filterRequestTitleThunk = (title,role,employeeId) => async(dispatch
     .finally(() => dispatch(setIsLoading(false)));}
     else if(role=== "employee"){
         await axios
-     .get(`http://localhost:8000/api/employee/${employeeId}`, {
+     .get(`https://requestserver-y82y.onrender.com/api/employee/${employeeId}`, {
        headers: { token: token },
      })
      .then((res) => {
@@ -87,7 +87,7 @@ export const filterRequestTitleThunk = (title,role,employeeId) => async(dispatch
 export const requestEmployeeThunk = (id) => async(dispatch) => {
     dispatch(setIsLoading(true));
     await axios
-    .get(`http://localhost:8000/api/employee/${id}`, {
+    .get(`https://requestserver-y82y.onrender.com/api/employee/${id}`, {
       headers: { token: token }
     })
     .then((res) => {

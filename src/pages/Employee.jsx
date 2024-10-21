@@ -63,7 +63,7 @@ const Employee = () => {
 
   const submit = async (data) => {
     await axios
-      .put(`http://localhost:8000/api/employee/${data.employeeId}`, data, {
+      .put(`https://requestserver-y82y.onrender.com/api/employee/${data.employeeId}`, data, {
         headers: { token: token },
       })
           .then((res) => {
