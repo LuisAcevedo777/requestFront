@@ -52,7 +52,7 @@ const Home = () => {
   const submit = (data) => {
     const newData = { ...data, employeeId };
     axios
-      .post("https://requestserver-1.onrender.com/api/request/", newData, {
+      .post("https://requestserver-y82y.onrender.com/api/request/", newData, {
         headers: { token: token },
       })
       .then((res) => {
@@ -83,7 +83,7 @@ const Home = () => {
 
 
      <Form className="request" onSubmit={handleSubmit(submit)}>
-        <h2>Request</h2>
+        <h2 style={{color: "white"}}>Request</h2>
         <Form.Group as={Col} controlId="formGridEmail">
           <Form.Label>Code</Form.Label>
           <Form.Control
