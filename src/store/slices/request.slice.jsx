@@ -24,18 +24,23 @@ export const requestSlice = createSlice({
 
 //Thunk para traer las solicitudes de la base de datos y agregarlas al array de solicitudes
 
-export const getRequestThunk = () => async(dispatch) => {
+export const getRequestThunk = () => async (dispatch) => {
   dispatch(setIsLoading(true));
 
-  await axios
-    .get("https://requestserver-y82y.onrender.com/api/request", {
-      headers: { token: token },
-    })
-    .then((res) => {
-        dispatch(setRequest(res.data));
-    }).catch((error)=>{message: error.response.data.message})
-    .finally(() => dispatch(setIsLoading(false)));
+  try {
+    const res = await axios.get("https://requestserver-y82y.onrender.com/api/request", {
+      headers: { token: token }, 
+    });
+    dispatch(setRequest(res.data));
+  } catch (error) {
+    throw(error)
+    
+  } finally {
+    dispatch(setIsLoading(false));
+  }
 };
+
+
 
 //Thunk que permitirá limpiar el array de las solicitudes
 

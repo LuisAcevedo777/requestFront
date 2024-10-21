@@ -37,7 +37,7 @@ const Home = () => {
      
     }else{
       dispatch(getClearThunk())
-     setResponse("NO TIENES AUTHORIZACIÓN")
+     setResponse("NO TIENES AUTORIZACIÓN")
     
     }
   }, [dispatch]);
