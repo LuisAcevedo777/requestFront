@@ -8,9 +8,7 @@ import Row from "react-bootstrap/Row";
 
 const Register = () => {
 
-  //Llamado a token del localStorage
 
-  const token = JSON.parse(localStorage.getItem("token"));
   const { register, handleSubmit } = useForm();
   const navigate = useNavigate();
   const [registerUser, setRegisterUser] = useState("");
@@ -29,14 +27,14 @@ const Register = () => {
       })
       .catch((error) => {
         if (error.response.status === 401) {
-          alert("Datos incorrectos!");
+          setResponse('Datos Incorrectos');
         } else {
           setResponse(error.message);
           setTimeout(() => {
             setResponse("");
           }, 2000);
-          console.log("No se puedo registrar a la cuenta");
-          console.log(error);
+          setResponse(err.response.data.message || 'Error desconocido');
+              console.log(error);
         }
       });
   };

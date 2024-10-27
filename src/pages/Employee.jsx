@@ -23,7 +23,6 @@ const Employee = () => {
 
   const [newsSearch, setNewsSearch] = useState("");
   const employees = useSelector((state) => state.employee);
-  const [user, setUser] = useState({});
   const { register, reset, handleSubmit } = useForm();
   const [update, setUpdate] = useState("");
   const [show, setShow] = useState(false);
@@ -38,14 +37,16 @@ const Employee = () => {
   //Resetea los campos con el usuario seleccionado
 
   const handleShow = (currentEmployee) => {
+          
     reset({
       employeeId: currentEmployee.employeeId,
       name: currentEmployee.name,
       email: currentEmployee.email,
       roleId: currentEmployee.roleId,
       salary: currentEmployee.salary,
-    }),
-      setShow(true);
+    })
+    setShow(true);
+
   };
 
   //Carga el array de empleados con los que están en la base de datos
@@ -55,24 +56,28 @@ const Employee = () => {
 
  //Petición para actualizar información de un empleado, desde el formulario flotante
 
-  const submit = async (data) => {
-    await axios
-      .put(`https://requestserver-y82y.onrender.com/api/employee/${data.employeeId}`, data, {
-        headers: { token: token },
-      })
-          .then((res) => {
-      
-        setUpdate("Empleado Actualizado");
-        setTimeout(() => {
-          setUpdate("");
-        }, 2000);
-        
-         dispatch(getEmployeeThunk())
-        })
-      .catch((error) => {
-        console.log(error), setUpdate(error.response.data);
-      });
-  };
+ const submit = async (data) => {
+ 
+  try {
+    const response = await axios.put(
+      `https://requestserver-y82y.onrender.com/api/employee/${data.employeeId}`,
+      data,
+      { headers: { token: token } }
+    );
+    dispatch(getEmployeeThunk());
+   console.log(response)
+    setUpdate("Empleado Actualizado");
+    setTimeout(() => {
+      setUpdate("");
+    }, 2000);
+
+    
+    
+  } catch (error) {
+    console.log(error);
+    setUpdate(error.response ? error.response.data : error.message);
+  }
+};
 
   return (
     <div className="employeesContainer">
@@ -89,7 +94,7 @@ const Employee = () => {
             className="bg-danger text-black"
             variant="outline-secondary"
             id="button-addon2"
-             
+            aria-label="magnifying-glass"
             //filtro para traer los empleados de acuerdo al texto buscado
 
             onClick={() => dispatch(filterEmployeeTitleThunk(newsSearch))}
@@ -113,21 +118,21 @@ const Employee = () => {
                   type="text"
                   name="name"
                   className="cardEmployTitle"
-                  value={employee?.name}
+                   value={employee?.name}
                 />
                 <Form.Label className="text-white">Email: </Form.Label>
                 <Form.Control
                   type="text"
                   name="email"
                   className="cardEmployTitle"
-                  value={employee?.email}
+                   value={employee?.email}
                 />
                 <Form.Label className="text-white">Salary: </Form.Label>
                 <Form.Control
                   type="number"
                   name="salary"
                   className="cardEmployTitle"
-                  value={employee?.salary}
+                   value={employee?.salary}
                 />
 
                 <div className="crudEmployee">
@@ -140,7 +145,7 @@ const Employee = () => {
                     }}
                     className="fa-solid fa-trash-can text-light fa-2x"
                   ></i>
-                  <Button onClick={() => handleShow(employee)} variant="danger">
+                  <Button onClick={() => handleShow(employee)} data-testid={`update-employee-button-${employee?.employeeId}`} variant="danger">
                     Update Employee
                   </Button>
                 </div>
@@ -162,21 +167,22 @@ const Employee = () => {
               {...register("employeeId")}
             />
 
-            <Form.Label className="text-white">Name: </Form.Label>
+            <Form.Label className="text-white" >Name: </Form.Label>
             <Form.Control
               {...register("name")}
               type="text"
               name="name"
               className="cardEmployTitle"
-              defaultValue={user.name}
+              
             />
-            <Form.Label className="text-white">Email: </Form.Label>
+            <Form.Label className="text-white" htmlFor='email'>Email: </Form.Label>
             <Form.Control
               {...register("email")}
+              id='email'
               type="text"
-              name="email"
+              name="emailModal"
               className="cardEmployTitle"
-              defaultValue={user.email}
+              
             />
             <Form.Label className="text-white">Salary: </Form.Label>
             <Form.Control
@@ -184,7 +190,7 @@ const Employee = () => {
               type="number"
               name="salary"
               className="cardEmployTitle"
-              defaultValue={user.salary}
+             
             />
             <Form.Label className="text-white">RoleId: </Form.Label>
             <Form.Control
@@ -192,7 +198,7 @@ const Employee = () => {
               type="number"
               name="roleId"
               className="cardEmployTitle"
-              defaultValue={user.roleId}
+              
             />
             <div className="crudEmployee">
               <i className="fa-solid fa-trash-can text-light fa-2x"></i>

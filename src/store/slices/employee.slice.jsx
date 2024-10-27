@@ -4,10 +4,7 @@ import axios from "axios";
 
 //Slice de empleados
 
-//Llamado a token del localStorage
-
-
-
+const token = JSON.parse(localStorage.getItem("token"));
 
 export const employeeSlice = createSlice({
   name: "employee",
@@ -23,62 +20,73 @@ export const employeeSlice = createSlice({
   },
 });
 
-
-
 //Thunk para cargar slice empleados con información de la base de datos
 
-
-
 export const getEmployeeThunk = () => async (dispatch) => {
-  const token = JSON.parse(localStorage.getItem("token"));
+
   try {
     dispatch(setIsLoading(true));
-    const res = await axios.get("https://requestserver-y82y.onrender.com/api/employee/", {
-      headers: { "token": token },
-    });
-      dispatch(setEmployee(res.data));
+    const res = await axios.get(
+      "https://requestserver-y82y.onrender.com/api/employee/",
+      {
+        headers: { token: token },
+      }
+    );
+    dispatch(setEmployee(res.data));
   } catch (error) {
     console.error("Error fetching employees:", error);
-    throw error
+    throw error;
   } finally {
     dispatch(setIsLoading(false));
   }
 };
 
-
 //Thunk para filtrar empleados de la base de datos con las letras enviadas
 
-export const filterEmployeeTitleThunk = (title) => (dispatch) => {
+export const filterEmployeeTitleThunk = (title) => async (dispatch) => {
   const token = JSON.parse(localStorage.getItem("token"));
-  dispatch(setIsLoading(false));
+  dispatch(setIsLoading(true));
 
-  axios
-    .get("https://requestserver-y82y.onrender.com/api/employee/", {
-      headers: { token: token },
-    })
-    .then((res) => {
-      const newList = res.data?.filter((employee) =>
-        employee.name?.toLowerCase().includes(title?.toLowerCase())
-      );
-      dispatch(setEmployee(newList));
-    })
-    .finally(() => dispatch(setIsLoading(false)));
+  try {
+    const res = await axios.get(
+      "https://requestserver-y82y.onrender.com/api/employee/",
+      {
+        headers: { token: token },
+      }
+    );
+
+    const newList = res.data?.filter((employee) =>
+      employee.name?.toLowerCase().includes(title?.toLowerCase())
+    );
+
+    dispatch(setEmployee(newList));
+  } catch (error) {
+    console.error("Error filtering employees:", error);
+  } finally {
+    dispatch(setIsLoading(false));
+  }
 };
 
 //Thunk para eliminar un empleado con el id
 
-export const deleteThunk = (id) => (dispatch) => {
+export const deleteThunk = (id) => async (dispatch) => {
   const token = JSON.parse(localStorage.getItem("token"));
-  dispatch(setIsLoading(false));
+  dispatch(setIsLoading(true));
 
-  axios
-    .delete(`https://requestserver-y82y.onrender.com/api/employee/${id}`, {
-      headers: { token: token },
-    })
-    .then((res) => {
-      console.log("eliminado con exito");
-    })
-    .finally(() => dispatch(setIsLoading(false)));
+  try {
+    await axios.delete(
+      `https://requestserver-y82y.onrender.com/api/employee/${id}`,
+      {
+        headers: { token: token },
+      }
+    );
+
+    console.log("Eliminado con éxito");
+  } catch (error) {
+    console.error("Error eliminando el empleado:", error);
+  } finally {
+    dispatch(setIsLoading(false));
+  }
 };
 
 export const { setEmployee } = employeeSlice.actions;

@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-//Slice de booleano del loading
+//Slice del loading
 
 export const isLoadingSlice = createSlice({
   name: "isLoading",

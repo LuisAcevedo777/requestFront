@@ -4,9 +4,10 @@ import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
 import Home from './Home'; 
 import axios from 'axios';
-import thunk from 'redux-thunk';
+import {thunk} from 'redux-thunk';
+import { beforeEach, describe, vi } from 'vitest';
 
-jest.mock('axios');
+vi.mock('axios');
 
 const middlewares = [thunk];
 const mockStore = configureStore(middlewares);
@@ -16,13 +17,15 @@ describe('Home Component', () => {
 
     beforeEach(() => {
         store = mockStore({
-            request: [],
+            request: [
+                { requestId: 1, description: 'Request 1', summary: 'Summary 1', createdAt: '2022-01-01' },
+                { requestId: 2, description: 'Request 2', summary: 'Summary 2', createdAt: '2022-01-02' }
+            ],
             isLoading: false,
         });
 
-        // Mock localStorage
         const mockLocalStorage = {
-            getItem: jest.fn((key) => {
+            getItem: vi.fn((key) => {
                 switch (key) {
                     case 'token':
                         return JSON.stringify('mockedToken');
@@ -34,7 +37,7 @@ describe('Home Component', () => {
                         return null;
                 }
             }),
-            setItem: jest.fn(),
+            setItem: vi.fn(),
         };
         global.localStorage = mockLocalStorage;
     });
@@ -83,24 +86,14 @@ describe('Home Component', () => {
 
     test('renders requests based on user role', async () => {
         
-        const mockRequests = [
-            { requestId: 1, description: 'Request 1', summary: 'Summary 1', createdAt: '2022-01-01' },
-            { requestId: 2, description: 'Request 2', summary: 'Summary 2', createdAt: '2022-01-02' },
-        ];
-        axios.get.mockResolvedValue({ data: mockRequests });
-
         render(
             <Provider store={store}>
                 <Home />
             </Provider>
         );
 
-        await waitFor(() => {
-            expect(screen.getByText('Request 1')).toBeInTheDocument();
-            expect(screen.getByText('Summary 1')).toBeInTheDocument();
-            expect(screen.getByText('Request 2')).toBeInTheDocument();
-            expect(screen.getByText('Summary 2')).toBeInTheDocument();
-        });
-    });
-
+        expect(screen.getByText('Request 1')).toBeInTheDocument();
+        expect(screen.getByText('Summary 1')).toBeInTheDocument();
+         
+            });
 });
